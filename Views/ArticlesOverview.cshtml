@@ -1,0 +1,18 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ArticlesOverview>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+}
+
+<h1>@Model.ArticlesTitle</h1>
+<p>@Model.ArticlesBodyText</p>
+
+@foreach (var article in Model.Children<ArticleItem>())
+{
+    <a href="@article.Url">
+        <div class="jumbotron" >
+            <h2>@article.ArticleTitle)</h2>
+            <p>@article.ArticleContent</p>
+        </div>
+    </a>
+}

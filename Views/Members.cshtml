@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Members>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Core.Services;
+@{
+Layout = "Master.cshtml";
+IMemberService memberService = Services.MemberService;
+var members = memberService.GetMembersByMemberType("Active");
+}
+
+    <h1 class="h1">@Model.Title</h1>
+<div class="col-offset-2 col-6">
+    @foreach (var member in members)
+    {
+    <div class="card mt-3">
+        <div class="card-body row">
+            <div class="col-9">
+                <p>@member.Name</p>
+                <p>@member.GetValue("address")</p>
+                <p>@member.GetValue("zip")</p>
+                <p>@member.GetValue("city")</p>
+                <p>@member.GetValue("mobile")</p>
+                Skills:
+                @{
+                    if (member.GetValue("skills") != null)
+                    {
+                        string[] skills = member.GetValue("skills").ToString().Split(',');
+                        string skillString = string.Join(", ", skills.Select(item => item)).Replace("\"", "").TrimStart('[').TrimEnd(']');
+                        <span>@skillString</span>
+                    }
+                }
+            </div>
+            <div class="col-3">
+                @if (member.GetValue("photo") != null)
+                {
+                    <img src="@Umbraco.Media(member.GetValue("photo")).Url" width="100" height="100" />
+                }
+            </div>
+        </div>
+    </div>
+    }
+</div>

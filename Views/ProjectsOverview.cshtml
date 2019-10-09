@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.ProjectsOverview>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+    Layout = "Master.cshtml";
+    var itemCount = 0;
+}
+
+<h1>@Model.ProjectsTitle</h1>
+
+<p>@Model.ProjectsBodyText</p>
+
+@foreach (var project in Model.Children())
+{
+
+
+}
+
+@foreach (var project in Model.Children<ProjectItem>())
+{
+    if (itemCount == 0)
+    {
+        @:<div class="row col-11">
+        }
+        <a href="@project.Url" class="col-5 offset-1 jumbotron">
+            <div>
+                <h2 class="col-12">@project.ProjectTitle</h2>
+                <p class="col-12">@project.ProjectDescription</p>
+                <p class="col-12">status: @project.ProjectStatus</p>
+            </div>
+        </a>
+
+        if (itemCount == 1)
+        {
+            itemCount = 0;
+        @:</div>
+    }
+    else
+    {
+        itemCount++;
+    }
+}
