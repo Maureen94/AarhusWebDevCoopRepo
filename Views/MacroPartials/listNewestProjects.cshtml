@@ -5,7 +5,7 @@
 var rootNode = Model.Content.Root();
 var projectsOverviewNode = rootNode.FirstChildOfType("projectsOverview");
 var projects = projectsOverviewNode.Children();
-var completedProjects = projects.Where(x => x.HasValue("projectStatus") && x.GetProperty("projectStatus").Value<string>() == "Done");
+var completedProjects = projects.Where(x => x.HasValue("projectStatus") && x.GetProperty("projectStatus").Value<string>() == "Completed");
 var sortedCompletedProjects = completedProjects.OrderByDescending(x => x.CreateDate);
 var top5SortedCompletedProjects = sortedCompletedProjects.Take(5);
 }
