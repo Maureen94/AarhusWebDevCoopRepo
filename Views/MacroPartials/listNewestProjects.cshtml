@@ -2,19 +2,28 @@
 @using Umbraco.Web
 
 @{
-var rootNode = Model.Content.Root();
-var projectsOverviewNode = rootNode.FirstChildOfType("projectsOverview");
-var projects = projectsOverviewNode.Children();
-var completedProjects = projects.Where(x => x.HasValue("projectStatus") && x.GetProperty("projectStatus").Value<string>() == "Completed");
-var sortedCompletedProjects = completedProjects.OrderByDescending(x => x.CreateDate);
-var top5SortedCompletedProjects = sortedCompletedProjects.Take(5);
+    var rootNode = Model.Content.Root();
+    var projectsOverviewNode = rootNode.FirstChildOfType("projectsOverview");
+    var projects = projectsOverviewNode.Children();
+    var completedProjects = projects.Where(x => x.HasValue("projectStatus") && x.GetProperty("projectStatus").Value<string>() == "Completed");
+    var sortedCompletedProjects = completedProjects.OrderByDescending(x => x.CreateDate);
+    var top5SortedCompletedProjects = sortedCompletedProjects.Take(5);
 }
 
-<div>
-    <h3>Completed projects</h3>
-    <div class="bg-info">
-        @foreach(var project in top5SortedCompletedProjects){
-        <p>@project.Value("projectTitle")</p>
-        }
-    </div>
+    <h3 style="text-align: center;" class="pt-3 pb-3">Completed projects</h3>
+<div class="row">
+    @foreach (var project in top5SortedCompletedProjects)
+    {
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header">@project.Value("projectTitle")</h4>
+                <div class="card-body">
+                    <p class="card-text">@project.Value("projectDescription")</p>
+                </div>
+                <div class="card-footer">
+                    <a href="@project.Url" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    }
 </div>

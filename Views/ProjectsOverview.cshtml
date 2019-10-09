@@ -4,16 +4,11 @@
     Layout = "Master.cshtml";
     var itemCount = 0;
 }
+<div>
 
-<h1>@Model.ProjectsTitle</h1>
+<h1 style="text-align:center">@Model.ProjectsTitle</h1>
 
-<p>@Model.ProjectsBodyText</p>
-
-@foreach (var project in Model.Children())
-{
-
-
-}
+<span style="text-align:center">@Model.ProjectsBodyText</span>
 
 @foreach (var project in Model.Children<ProjectItem>())
 {
@@ -39,3 +34,4 @@
         itemCount++;
     }
 }
+</div>
