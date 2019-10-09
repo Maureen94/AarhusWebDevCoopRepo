@@ -4,8 +4,12 @@
     Layout = "Master.cshtml";
 }
 
-@Model.SiteTitle
+    <div>
+        @Model.SiteTitle
 
-@Model.MainContent
+        @Model.MainContent
+
+    </div>
+
 
 @Umbraco.RenderMacro("listNewestProjects")
