@@ -18,7 +18,7 @@
 
         @if (selection.Length > 0)
         {
-
+            @* @item.Url links to the Url of the page. And @item.Name displays the  *@
             foreach (var item in selection)
             {
                 if (Umbraco.MemberHasAccess(item.Path))
@@ -31,18 +31,18 @@
         }
 
         @*<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Projects
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                @foreach (var project in Model.Content.Root().FirstChildOfType("projectsOverview").Children<ProjectItem>().Where(x => x.IsVisible()))
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Projects
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            @foreach (var project in Model.Content.Root().FirstChildOfType("projectsOverview").Children<ProjectItem>().Where(x => x.IsVisible()))
+            {
+                if (project.ProjectStatus.ToString() == "Completed")
                 {
-                    if (project.ProjectStatus.ToString() == "Completed")
-                    {
-                        <a class="dropdown-item" href="@project.Url"> @project.ProjectTitle</a>
-                    }
+                    <a class="dropdown-item" href="@project.Url"> @project.ProjectTitle</a>
                 }
-            </div>*@
+            }
+        </div>*@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color:white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Articles

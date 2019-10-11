@@ -19,6 +19,10 @@ namespace AarhusWebDevCoop.Controllers
         [HttpPost]
         public ActionResult HandleFormSubmit(ContactForm model)
         {
+            if (!ModelState.IsValid)
+            {
+                return CurrentUmbracoPage();
+            }
             //Get the GuildUdi of the cuttent page
             GuidUdi currentPageUdi = new GuidUdi(CurrentPage.ContentType.ItemType.ToString(), CurrentPage.Key);
 
@@ -32,12 +36,6 @@ namespace AarhusWebDevCoop.Controllers
 
             //Save 
             Services.ContentService.Save(msg);
-
-
-            if (!ModelState.IsValid)
-            {
-                return CurrentUmbracoPage();
-            }
 
             MailMessage message = new MailMessage();
             message.To.Add("maureenkoopman9@gmail.com");

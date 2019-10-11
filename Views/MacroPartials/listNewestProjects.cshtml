@@ -7,7 +7,7 @@
     var projects = projectsOverviewNode.Children();
     var completedProjects = projects.Where(x => x.HasValue("projectStatus") && x.GetProperty("projectStatus").Value<string>() == "Completed");
     var sortedCompletedProjects = completedProjects.OrderByDescending(x => x.CreateDate);
-    var top5SortedCompletedProjects = sortedCompletedProjects.Take(5);
+    var top5SortedCompletedProjects = sortedCompletedProjects.Take(3);
 }
 
     <h3 style="text-align: center;" class="pt-3 pb-3">Completed projects</h3>
