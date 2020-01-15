@@ -11,6 +11,10 @@ namespace AarhusWebDevCoop.ViewModels
         [Required(ErrorMessage = "Please enter your name")]
         public string Name { get; set; }
 
+
+
+
+
         [Required(ErrorMessage = "Please enter mail address")]
         [Display(Name = "Email")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", 
