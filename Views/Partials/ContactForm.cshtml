@@ -8,6 +8,7 @@
 
 @if (TempData["success"] == null)
 {
+    //we want to use the "HandleFormSubmit" in the  "ContactFormSurfaceController"
  using(Html.BeginUmbracoForm("HandleFormSubmit", "ContactFormSurface", new object{ }, new{ @class = "form-horizontal"}))
 {
 <div class="form-group">

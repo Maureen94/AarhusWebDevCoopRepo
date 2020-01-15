@@ -6,6 +6,12 @@
     This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
     This is the home page for a standard website.
     It also highlights the current active page/section in the navigation with the CSS class "current".
+    Content = Contenttree 
+    Root() = Homepage, first of 
+    In report make screenshot of the contenttree and arrow out the root and children
+    Children = List of children 
+    .Where(x => x.IsVisible()) returns a list of all the children that doesnt have the
+    UmbracoNaviHide property as true
 *@
 
 @{ var selection = Model.Content.Root().Children.Where(x => x.IsVisible()).ToArray(); }
@@ -15,12 +21,12 @@
             <a class="nav-link" style="color:white" href="@Model.Content.Root().Url">@Model.Content.Root().Name</a>
         </li>
 
-
         @if (selection.Length > 0)
         {
-            @* @item.Url links to the Url of the page. And @item.Name displays the  *@
+            //For all of the visible root children 
             foreach (var item in selection)
             {
+                //If the current member has access to the childs path, it will be shown in the navigation
                 if (Umbraco.MemberHasAccess(item.Path))
                 {
                     <li class="@(item.IsAncestorOrSelf(Model.Content) ? "current" : null) nav-item">
@@ -43,8 +49,10 @@
                 }
             }
         </div>*@
+
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color:white" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" style="color:white" 
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Articles
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">

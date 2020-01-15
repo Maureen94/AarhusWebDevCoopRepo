@@ -18,12 +18,13 @@
     Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
 }
 
-            @* NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed *@
+ @* NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed *@
 @Html.RenderJsHere()
 
 @using (Html.BeginUmbracoForm<UmbLoginController>
     ("HandleLogin"))
     {
+    //If the member is not logged in we show the loginpage if he is we show the logout
     if (!Members.GetCurrentLoginStatus().IsLoggedIn) {
     @Html.HiddenFor(m => loginModel.RedirectUrl)
     <fieldset>
